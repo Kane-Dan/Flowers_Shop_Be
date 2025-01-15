@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'user_auth',
     'django_redis',
     'catigories',
+    'mptt',
 ]
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',

@@ -7,19 +7,19 @@ class SubCategoryInline(admin.TabularInline):  # Или admin.StackedInline дл
     extra = 1  # Количество дополнительных пустых полей для добавления
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'parent', 'get_subcategories', 'created_at', 'updated_at')  # Добавляем get_subcategories
+    list_display = ('id', 'name', 'parent', 'get_sub_categories', 'created_at', 'updated_at')  
     search_fields = ('name',)
     list_filter = ('parent',)
     ordering = ('id',)
     inlines = [SubCategoryInline]  
 
-    def get_subcategories(self, obj):
+    def get_sub_categories(self, obj):
         
-        subcategories = obj.subcategories.all()  # Доступ к related_name 'subcategories'
-        if subcategories.exists():
-            return ", ".join([sub.name for sub in subcategories])
+        sub_categories = obj.sub_categories.all()  
+        if sub_categories.exists():
+            return ", ".join([sub.name for sub in sub_categories])
         return "Нет подкатегорий"
 
-    get_subcategories.short_description = "Подкатегории"
+    get_sub_categories.short_description = "Подкатегории"
 
 admin.site.register(Category, CategoryAdmin)
