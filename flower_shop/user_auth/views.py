@@ -62,14 +62,14 @@ class UserViewSet(ModelViewSet):
                 defaults={'a_token': access_token}
             )
 
-            # Сохраняем refresh-токен в Redis (или в кэше Django)
-            cache.set(f'refresh_token_{user.id}', str(refresh), timeout=60*60*24)  # 1 день
-
+            cache.set(f'refresh_token_{user.id}',refresh, timeout=60*60*24) 
+            saved_token = cache.get(f'refresh_token_{user.id}')
+            print(f'Saved token after set: {saved_token}')
+            
             return Response({
                 "access": access_token,
-                "refresh": str(refresh),
             }, status=status.HTTP_200_OK)
-
+            
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     @extend_schema(
@@ -112,3 +112,5 @@ class UserViewSet(ModelViewSet):
             if cache.get(user_id) == refresh_token:
                 return user_id.split('_')[-1]  # Извлекаем id пользователя из ключа
         return None
+   
+    
