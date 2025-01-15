@@ -1,5 +1,5 @@
 from random import randint
-from catigories.models import Category  
+from categories.models import Category  
 
 def create_categories_with_sub_categories():
     """

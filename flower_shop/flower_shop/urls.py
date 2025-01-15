@@ -5,7 +5,7 @@ from django.urls import path
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from user_auth.urls import router as user_roter
-from catigories.urls import router as categories_router
+from categories.urls import router as categories_router
 urlpatterns =[
     path('admin/', admin.site.urls),
     path('api/', include(user_roter.urls)),

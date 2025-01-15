@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'user_auth',
     'django_redis',
-    'catigories',
+    'categories',
     'mptt',
 ]
 REST_FRAMEWORK = {
